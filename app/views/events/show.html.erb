@@ -1,0 +1,68 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <h5 class='form-header-text text-center'>
+        <%= @event.title %>
+      </h5>
+      <div>
+        <% if @event.image.present? %>
+          <%= image_tag @event.image, class: 'img-fluid rounded mx-auto d-block' %>
+        <% else %>
+          <%= image_tag "/assets/default-image.jpg", class: 'image-fulid rounded mx-auto d-block' %>
+        <% end %>
+      </div>
+      <div class="table-responsive-lg text-center">
+        <table class="table table-bordered table-striped">
+          <tbody>
+            <tr>
+              <th class="align-middle w-25">投稿者</th>
+              <td class="align-middle"><%= @event.user.name %></td>
+            </tr>
+            <tr>
+              <th class="align-middle w-25">ジャンル</th>
+              <td class="align-middle"><%= @event.genre.name %></td>
+            </tr>
+            <tr>
+              <th class="align-middle w-25">地域</th>
+              <td class="align-middle"><%= @event.area.name %></td>
+            </tr>
+            <tr>
+              <th class="align-middle w-25">場所</th>
+              <td class="align-middle"><%= @event.address %></td>
+            </tr>
+            <tr>
+              <th class="align-middle w-25">開催日</th>
+              <td class="align-middle"><%= @event.event_date.strftime("%Y年%-m月%-d日") %></td>
+            </tr>
+            <tr>
+              <th class="align-middle w-25">開場</th>
+              <td class="align-middle"><%= @event.opening_time.strftime("%-H時%-M分") %></td>
+            </tr>
+            <tr>
+              <th class="align-middle w-25">開演</th>
+              <td class="align-middle"><%= @event.start_time.strftime("%-H時%-M分") %></td>
+            </tr>
+            <tr>
+              <th class="align-middle w-25">終演</th>
+              <td class="align-middle"><%= @event.end_time.strftime("%-H時%-M分") %></td>
+            </tr>
+            <tr>
+              <th class="align-middle w-25">チケット購入先</th>
+              <td class="align-middle"><%= @event.ticket_reservation %></td>
+            </tr>
+            <tr>
+              <th class="align-middle w-25">詳細</th>
+              <td class="align-middle"><%= @event.info %></td>
+            </tr>
+          </tbody>
+        </table>
+          <% if user_signed_in? %>
+            <div id="likes_buttons<%= @event.id %>">
+              <%= render partial: "likes/like", locals: { event:@event } %>
+            </div>
+          <% end %>
+      </div>
+        <%= link_to 'トップページにもどる', root_path,class: 'back-btn' %>
+    </div>
+  </div>
+</div>

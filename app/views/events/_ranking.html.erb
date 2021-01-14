@@ -1,0 +1,23 @@
+<% @ranks.each.with_index(1) do |event, i| %>
+  <div class="card-group col-md-6 col-lg-3 effect-fade" style="width: 20rem;" >
+    <%= link_to event_path(event.id), class: "event-link" do%>
+    <div class="card new-event">
+      <span class="event-info"><i class="fas fa-clock"></i> <%= event.created_at.strftime("%m月%d日%H時") %></span>
+      <% if event.image.present? %>
+        <%= image_tag event.image, class: 'card-img-top' %>
+      <% else %>
+        <%= image_tag "/assets/default-image.jpg", class: 'card-img-top' %>
+      <% end %>
+        <div class="card-body">
+          <h5 class="card-title"><%= event.title %></h5>
+        </div>
+        <ul class="list-group">
+          <li class="list-group-item">ジャンル　<%= event.genre.name %></li>
+          <li class="list-group-item">会場　　　<%= event.area.name %></li>
+          <li class="list-group-item">開催日　　<%= event.event_date.strftime("%Y年%-m月%-d日") %></li>
+          <li class="list-group-item like-button"><i class="fas fa-heart fa-2x" style="color: #e82a2a;"></i><span style="color: #e82a2a"><%= event.likes.count %></span></li>
+        </ul>
+      <% end %>
+    </div>
+  </div>
+<% end %>

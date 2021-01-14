@@ -1,0 +1,23 @@
+<%= search_form_for @a, url: events_search_path do |f| %>
+  <div class="search-wrapper">
+    <div class="search-content">
+        <%= f.label :title_or_info_cont, 'キーワード検索', class: 'label' %>
+        <%= f.search_field :title_or_info_cont, placeholder: 'キーワードを入力', class:"search-form-control float-right" %>
+    </div>
+    <div class="search-content">
+        <%= f.label :event_date_eq, '日付検索', class: 'label' %>
+        <%= f.date_field :event_date_eq, class:"search-form-control float-right" %>
+    </div>
+    <div class="search-content">
+        <%= f.label :genre_id_eq, 'ジャンルを選択', class: 'label' %>
+        <%= f.collection_select(:genre_id_eq, Genre.all, :id, :name, {include_blank: "---"}, {class:"search-select-box float-right"}) %>
+    </div>
+    <div class="search-content">
+        <%= f.label :area_id_eq, '地域を選択', class: 'label' %>
+        <%= f.collection_select(:area_id_eq, Area.all, :id, :name, {include_blank: "---"}, {class:"search-select-box float-right"}) %>
+    </div>
+    <div class="search-content text-center">
+      <%= f.submit 'この条件で検索する', class:"btn search-btn" %>
+    </div>
+  </div>
+<% end %>

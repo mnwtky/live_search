@@ -1,0 +1,13 @@
+<div class="likes_buttons">
+<% if user_signed_in? %>
+  <% if current_user.liked_by?(@event.id) %>
+    <%= link_to destroy_like_path(@event.id, current_user.likes.find_by(event_id: @event.id).id), method: :delete, remote: true do %>
+      <p class="like-button"><i class="fas fa-heart fa-2x" style="color: #e82a2a;"></i><span style="color: #e82a2a"><%= @event.likes.count %></span></p>
+    <% end %>
+  <% else %>
+    <%= link_to create_like_path(@event.id), method: :post, remote: true do %>
+      <p class="like-button"><i class="far fa-heart fa-2x" style="color: #e82a2a;"></i><span style="color: #e82a2a"><%= @event.likes.count %></span></p>
+    <% end %>
+  <% end %>
+<% end %>
+</div>
