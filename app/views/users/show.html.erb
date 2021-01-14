@@ -1,0 +1,64 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h5 class="event-title">ユーザー情報</h5>
+      <div class="table-responsive-lg text-center">
+        <table class="table table-bordered table-striped">
+          <tbody>
+            <tr>
+              <td class="align-middle w-25">お名前</th>
+              <td class="align-middle"><%= @user.name %></td>
+            </tr>
+              <td class="align-middle w-25">MAIL</th>
+              <td class="align-middle"><%= @user.email %></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <h5 class="event-title"><i class="fas fa-heart fa-2x" style="color:lightskyblue"></i>　<%= @user.name %>さんのお気に入りイベント</h5>
+    <div class="row">
+      <% @user.liked_events.each do |event| %>
+        <div class="card-group col-md-6 col-lg-3">
+          <%= link_to event_path(event.id), class: "event-link" do%>
+          <span class="event-info"><%= event.genre.name %></span>
+          <div class="card articles-chart">
+            <%= image_tag event.image, class:"card-img-top" if event.image.attached? %> 
+              <div class="card-body">
+                <h5 class="card-title"><%= event.title %></h4>
+                <p class="card-text"><%= event.info.truncate(30) %></p>
+                <p class="like-button"><i class="far fa-heart fa-2x" style="color: #e82a2a;"></i><span style="color: #e82a2a"><%= event.likes.count %></span></p>
+              </div>
+          </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+</div>
+
+<div class="container">
+  <h5 class="event-title"><i class="far fa-newspaper fa-2x" style="color:lightskyblue"></i>　<%= @user.name %>さんの投稿イベント</h5>
+    <div class="row">
+      <% @user.events.each do |event| %>
+        <div class="card-group col-md-6 col-lg-3">
+          <%= link_to event_path(event.id), class: "event-link" do%>
+          <span class="event-info"><%= event.genre.name %></span>
+          <div class="card articles-chart">
+            <%= image_tag event.image, class:"card-img-top" if event.image.attached? %> 
+              <div class="card-body">
+                <h5 class="card-title"><%= event.title %></h4>
+                <p class="card-text"><%= event.info.truncate(30) %></p>
+                <p class="like-button"><i class="far fa-heart fa-2x" style="color: #e82a2a;"></i><span style="color: #e82a2a"><%= event.likes.count %></span></p>
+              </div>
+          </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+</div>
+
+<%# <%= link_to '編集', edit_user_registration_path, method: :get, class: "btn btn-outline-success w-25 admin-btn" %> %>

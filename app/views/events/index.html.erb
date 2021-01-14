@@ -1,0 +1,25 @@
+<div class="container-fluid title-contents">
+  <div class="top-page-image">
+    <h2 class="image-title">LIVE SEARCH</h2>
+    <p>都内のイベントを投稿、検索できるサービスです</p>
+  </div>
+</div>
+
+<div class="container">
+  <h5 class="event-title"><i class="fas fa-search fa-2x"></i>　イベントを探す</h5>
+  <%= render "layouts/search" %>
+</div>
+
+<div class="container">
+  <h5 class="event-title"><i class="far fa-newspaper fa-2x"></i>　新着イベント</h5>
+    <div class="row">
+      <%= render "events/event"  %>
+    </div>
+</div>
+
+<div class="container">
+  <h5 class="event-title"><i class="fas fa-crown fa-2x"></i>　人気イベント</h5>
+    <div class="row">
+      <%= render "events/ranking" %>
+    </div>
+</div>

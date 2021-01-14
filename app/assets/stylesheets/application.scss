@@ -1,0 +1,184 @@
+@import "bootstrap";
+@import 'font-awesome-sprockets';
+@import 'font-awesome';
+
+ body {
+  padding-top: 60px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+
+// トップページ
+.title-contents {
+  background: linear-gradient(to top, rgba(142, 176, 180, 0.541) 0%, rgba(127, 167, 177, 0.7) 100%),url(top_image.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  // display: flex;
+  // flex-direction: column;
+  // align-items: flex-start;
+  // justify-content: center;
+  padding: 30vh 30vw;
+  color: #fff;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.9);
+  font-family: 'Montserrat', sans-serif;
+}
+
+.event-title {
+  text-align: center;
+  margin: 10vh 0 ;
+  font-weight: bold;
+}
+
+.image-title {
+  font-size: 50px;
+}
+
+i {
+  color: skyblue;
+}
+
+
+// ヘッダー
+
+.nav-item{
+  a {
+    color: white;
+    position: relative;
+    display: inline-block;
+    text-decoration: none;
+    margin: 5px 25px 0 5px;
+  }
+  a:hover{
+    text-decoration: none;
+    color: white;
+  }
+  a::after {
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    content: '';
+    width: 100%;
+    height: 2px;
+    background:white;
+    transform: scale(0, 1);
+    transform-origin: center top;
+    transition: transform .3s;
+  }
+  a:hover::after {
+    transform: scale(1, 1);
+  }
+}
+
+.login-user {
+  margin-left: 5px;
+  color: white;
+}
+
+.header-logo {
+  margin-left: 25px;
+}
+
+
+
+// フッター
+.footer{
+  width: 100vw;
+  background-image: linear-gradient(-135deg, #83a4d4, #b6fbff);
+  color: #fff;
+  text-align: center;
+  // position: absolute;
+  bottom: 0;
+  padding: 15px 0 15px 0;
+  margin-top: 200px;
+}
+
+// カード
+.new-event {
+  // height: 45vh;
+  margin: 10px 0 ;
+  transition: all .4s ease-in-out;
+}
+
+.new-event:hover {
+  box-shadow: 0 10px 25px 0 rgba(0, 0, 0, .5)
+}
+
+.card-img-top {
+  width: 100%;
+  height: 15vw;
+  object-fit: cover;
+}
+
+.event-link {
+  text-decoration: none !important;
+  color: black;
+}
+
+.event-link:hover {
+  text-decoration: none !important;
+  color: black;
+}
+
+// .pagination {
+//   justify-content: center;
+// }
+
+// .paginate {
+//   margin-top: 70px;
+// }
+
+
+// 検索
+.search-wrapper {
+  width: 600px;
+  margin: auto;
+}
+
+.search-content {
+  margin-bottom: 20px;
+}
+
+.search-select-box {
+  width: 200px;
+  padding: 5px 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background: #fff;
+  font-size: 16px;
+  resize: none;
+}
+
+.search-form-control {
+  width: 200px;
+  padding: 5px 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background: #fff;
+  font-size: 16px;
+  resize: none;
+}
+
+.search-btn {
+  width: 300px;
+  margin-top: 10px;
+  color: #fff;
+  background-color:rgb(135, 206, 250);
+}
+
+
+// LIKEボタン
+.like-button {
+  float: right;
+}
+
+.like-count {
+  float: right;
+}
+
+// .fa-twitter-square {
+//   float: right;
+//   margin-right: 20px;
+// }
