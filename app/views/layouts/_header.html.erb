@@ -8,12 +8,25 @@
         <span class="navbar-toggler-icon"></span>
         </button>
       <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item"><%= link_to '投稿一覧', root_path %></li>
-          <li class="nav-item"><%= link_to '投稿する', new_event_path %></li>
-          <li class="nav-item"><%= link_to 'マイページ', user_path(current_user.id) %> </li>
-          <li class="nav-item"><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
-        </ul>
+
+      <% if user_signed_in? %>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item"><%= link_to '投稿一覧', root_path %></li>
+            <li class="nav-item"><%= link_to '投稿する', new_event_path %></li>
+            <li class="nav-item"><%= link_to 'マイページ', user_path(current_user.id) %></li>
+            <li class="nav-item"><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
+          </ul>
+        </div>
+      <% else %>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item"><%= link_to '記事一覧', root_path %></li>
+            <li class="nav-item"><%= link_to '新規登録', new_user_registration_path %></li>
+            <li class="nav-item"><%= link_to 'ログイン', new_user_session_path %></li>
+          </ul>
+        </div>
+      <% end %>
       </div>
     </nav>
   </div>  
