@@ -1,69 +1,77 @@
 <div class="container">
-  <%= form_with model: @event, local: true do |f| %>
-    <div class="form-group">
-      <%= f.label :image, '画像' %>
-      <%= f.file_field :image %>
-    </div>
+  <div class="row">
+    <div class="offset-sm-2 col-sm-8 offset-sm-2">
+      <%= form_with model: @event, local: true do |f| %>
 
-    <div class="form-group">
-      <%= f.label :title, 'イベントタイトル' %>
-      <%= f.text_field :title, placeholder: 'タイトルを入力してください', class: 'form-control' %>
-    </div>
+        <h5 class='form-header-text text-center'>
+          <i class="fas fa-pen fa-2x"></i>　新規イベント投稿
+        </h5>
 
-    <div class="form-group">
-      <%= f.label :price, '金額' %>
-      <%= f.text_field :price, class:"price-input", placeholder:"例）300", class: 'form-control' %>
-    </div>
+        <div class="form-group">
+          <%= f.label :image, '画像' %>
+          <%= f.file_field :image, class: 'form-control-file' %>
+        </div>
 
-    <div class="form-group">
-      <%= f.label :area, '地域' %>
-      <%= f.collection_select(:area_id, Area.all, :id, :name, {include_blank: "---"}, {class:"select-box", id:"area"}) %>
-    </div>
+        <div class="form-group">
+          <%= f.label :title, 'イベントタイトル' %>
+          <%= f.text_field :title, placeholder: 'タイトルを入力してください', class: 'form-control' %>
+        </div>
 
-    <div class="form-group">
-      <%= f.label :genre, 'ジャンル' %>
-      <%= f.collection_select(:genre_id, Genre.all, :id, :name, {include_blank: "---"}, {class:"select-box", id:"genre"}) %>
-    </div>
+        <div class="form-group">
+          <%= f.label :price, '金額' %>
+          <%= f.text_field :price, class:"price-input", placeholder:'金額を入力してください', class: 'form-control' %>
+        </div>
 
-    <div class="form-group">
-      <%= f.label :address, '会場' %>
-      <%= f.text_field :address, placeholder: 'ライブ会場を入力してください', class: 'form-control' %>
-    </div>
+        <div class="form-group">
+          <%= f.label :area, '地域' %>
+          <%= f.collection_select(:area_id, Area.all, :id, :name, {include_blank: "---"}, {class:"custom-select", id:"area"}) %>
+        </div>
 
-    <div class="form-group">
-      <%= f.label :event_date, '開催日' %>
-      <%= f.date_field :event_date, class: 'form-control' %>
-    </div>
+        <div class="form-group">
+          <%= f.label :genre, 'ジャンル' %>
+          <%= f.collection_select(:genre_id, Genre.all, :id, :name, {include_blank: "---"}, {class:"custom-select", id:"genre"}) %>
+        </div>
 
-    <div class="form-group">
-      <%= f.label :opening_time, '開場時間' %>
-      <%= f.time_field :opening_time, class: 'form-control' %>
-    </div>
+        <div class="form-group">
+          <%= f.label :address, '会場' %>
+          <%= f.text_field :address, placeholder: 'イベント会場を入力してください', class: 'form-control' %>
+        </div>
 
-    <div class="form-group">
-      <%= f.label :start_time, '開演時間' %>
-      <%= f.time_field :start_time, class: 'form-control' %>
-    </div>
-    
-    <div class="form-group">
-      <%= f.label :end_time, '終演時間' %>
-      <%= f.time_field :end_time, class: 'form-control' %>
-    </div>
+        <div class="form-group">
+          <%= f.label :event_date, '開催日' %>
+          <%= f.date_field :event_date, class: 'form-control' %>
+        </div>
 
-    <div class="form-group">
-      <%= f.label :ticket_reservation, 'チケット購入先' %>
-      <%= f.url_field :ticket_reservation, placeholder: 'URLを入力してください', class: 'form-control' %>
+        <div class="form-group">
+          <%= f.label :opening_time, '開場時間' %>
+          <%= f.time_field :opening_time, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :start_time, '開演時間' %>
+          <%= f.time_field :start_time, class: 'form-control' %>
+        </div>
+        
+        <div class="form-group">
+          <%= f.label :end_time, '終演時間' %>
+          <%= f.time_field :end_time, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :ticket_reservation, 'チケット購入先' %>
+          <%= f.url_field :ticket_reservation, placeholder: 'URLを入力してください', class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :info, '詳細' %>
+          <%= f.text_field :info, placeholder: 'イベント詳細を入力してください', class: 'form-control' %>
+        </div>
+
+        <div class="submit-content text-center">
+          <%= f.submit "投稿する" ,class: 'btn submit-btn' %>
+        </div>
+        
+      <% end %>
     </div>
-
-    <div class="form-group">
-      <%= f.label :info, '詳細' %>
-      <%= f.text_field :info, placeholder: 'イベント詳細', class: 'form-control' %>
-    </div>
-
-    <div class="sell-btn-contents">
-        <%= f.submit "投稿する" ,class: 'btn-default red-round-btn' %>
-        <%=link_to 'もどる', root_path, class: 'btn-default red-round-btn' %>
-      </div>
-
-  <% end %>
+  </div>
 </div>
