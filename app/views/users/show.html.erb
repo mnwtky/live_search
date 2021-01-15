@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-12">
-      <h5 class="event-title">ユーザー情報</h5>
+      <h5 class="event-title"><i class="fas fa-user fa-2x"></i>　ユーザー情報</h5>
       <div class="table-responsive-lg text-center">
         <table class="table table-bordered table-striped">
           <tbody>
@@ -20,45 +20,61 @@
 </div>
 
 <div class="container">
-  <h5 class="event-title"><i class="fas fa-heart fa-2x" style="color:lightskyblue"></i>　<%= @user.name %>さんのお気に入りイベント</h5>
+  <h5 class="event-title"><i class="fas fa-heart fa-2x"></i>　<%= @user.name %>さんのお気に入りイベント</h5>
     <div class="row">
       <% @user.liked_events.each do |event| %>
-        <div class="card-group col-md-6 col-lg-3">
-          <%= link_to event_path(event.id), class: "event-link" do%>
-          <span class="event-info"><%= event.genre.name %></span>
-          <div class="card articles-chart">
-            <%= image_tag event.image, class:"card-img-top" if event.image.attached? %> 
+        <div class="card-group col-md-6 col-lg-3 effect-fade" style="width: 20rem;" >
+        <%= link_to event_path(event.id), class: "event-link" do%>
+          <div class="card new-event">
+            <span class="event-info"><i class="fas fa-clock"></i> <%= event.created_at.strftime("%m月%d日%H時") %></span>
+            <% if event.image.present? %>
+              <%= image_tag event.image, class: 'card-img-top' %>
+            <% else %>
+              <%= image_tag "/assets/default-image.jpg", class: 'card-img-top' %>
+            <% end %>
               <div class="card-body">
-                <h5 class="card-title"><%= event.title %></h4>
-                <p class="card-text"><%= event.info.truncate(30) %></p>
-                <p class="like-button"><i class="far fa-heart fa-2x" style="color: #e82a2a;"></i><span style="color: #e82a2a"><%= event.likes.count %></span></p>
+                <h5 class="card-title"><%= event.title %></h5>
               </div>
+              <ul class="list-group">
+                <li class="list-group-item">ジャンル　<%= event.genre.name %></li>
+                <li class="list-group-item">会場　　　<%= event.area.name %></li>
+                <li class="list-group-item">開催日　　<%= event.event_date.strftime("%Y年%-m月%-d日") %></li>
+                <li class=" list-group-item like-button"><i class="fas fa-heart fa-2x" style="color: #e82a2a;"></i><span style="color: #e82a2a"><%= event.likes.count %></span></li>
+              </ul>
           </div>
-          <% end %>
-        </div>
+        <% end %>
+      </div>
       <% end %>
     </div>
 </div>
 
 <div class="container">
   <h5 class="event-title"><i class="far fa-newspaper fa-2x" style="color:lightskyblue"></i>　<%= @user.name %>さんの投稿イベント</h5>
-    <div class="row">
-      <% @user.events.each do |event| %>
-        <div class="card-group col-md-6 col-lg-3">
-          <%= link_to event_path(event.id), class: "event-link" do%>
-          <span class="event-info"><%= event.genre.name %></span>
-          <div class="card articles-chart">
-            <%= image_tag event.image, class:"card-img-top" if event.image.attached? %> 
+  <div class="row">
+    <% @user.events.each do |event| %>
+      <div class="card-group col-md-6 col-lg-3 effect-fade" style="width: 20rem;" >
+        <%= link_to event_path(event.id), class: "event-link" do%>
+          <div class="card new-event">
+            <span class="event-info"><i class="fas fa-clock"></i> <%= event.created_at.strftime("%m月%d日%H時") %></span>
+            <% if event.image.present? %>
+              <%= image_tag event.image, class: 'card-img-top' %>
+            <% else %>
+              <%= image_tag "/assets/default-image.jpg", class: 'card-img-top' %>
+            <% end %>
               <div class="card-body">
-                <h5 class="card-title"><%= event.title %></h4>
-                <p class="card-text"><%= event.info.truncate(30) %></p>
-                <p class="like-button"><i class="far fa-heart fa-2x" style="color: #e82a2a;"></i><span style="color: #e82a2a"><%= event.likes.count %></span></p>
+                <h5 class="card-title"><%= event.title %></h5>
               </div>
+              <ul class="list-group">
+                <li class="list-group-item">ジャンル　<%= event.genre.name %></li>
+                <li class="list-group-item">会場　　　<%= event.area.name %></li>
+                <li class="list-group-item">開催日　　<%= event.event_date.strftime("%Y年%-m月%-d日") %></li>
+                <li class=" list-group-item like-button"><i class="fas fa-heart fa-2x" style="color: #e82a2a;"></i><span style="color: #e82a2a"><%= event.likes.count %></span></li>
+              </ul>
           </div>
-          <% end %>
-        </div>
-      <% end %>
-    </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
 </div>
 
 <%# <%= link_to '編集', edit_user_registration_path, method: :get, class: "btn btn-outline-success w-25 admin-btn" %> %>
