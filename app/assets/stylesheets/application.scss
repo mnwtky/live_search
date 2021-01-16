@@ -9,7 +9,6 @@
   min-height: 100vh;
 }
 
-
 // トップページ
 .title-contents {
   background: linear-gradient(to top, rgba(142, 176, 180, 0.541) 0%, rgba(127, 167, 177, 0.7) 100%),url(top_image.jpg);
@@ -39,7 +38,6 @@
 i {
   color: skyblue;
 }
-
 
 // ヘッダー
 
@@ -81,8 +79,6 @@ i {
   margin-left: 25px;
 }
 
-
-
 // フッター
 .footer{
   width: 100vw;
@@ -94,6 +90,24 @@ i {
   padding: 15px 0 15px 0;
   margin-top: 200px;
 }
+
+// 新規登録/ログイン
+.form-text {
+  font-weight: bold;
+}
+
+.input-default {
+  width: 100%;
+  margin-top: 5px;
+  height: 48px;
+  padding: 5px 15px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background: #fff;
+  font-size: 16px;
+  resize: none;
+}
+
 
 // カード
 .new-event {
@@ -187,6 +201,7 @@ i {
 // 投稿ページ
 .form-header-text {
   margin: 10vh 0;
+  font-weight: bold;
 }
 
 .submit-btn {
