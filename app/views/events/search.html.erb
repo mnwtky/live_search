@@ -1,18 +1,27 @@
 <div class="container">
-  <h5 class="article-title">検索結果一覧</h5>
+  <h5 class="event-title">検索結果一覧</h5>
   <div class="row">
     <% if @results.length !=0 %>
       <% @results.each do |result| %>
-        <div class="card-group col-md-6 col-lg-3">
-          <%= link_to event_path(result.id), class: "article-link" do%>
-          <span class="article-info"><%= result.genre.name %></span>
-          <div class="card articles-chart">
-            <%= image_tag result.image, class:"card-img-top" if result.image.attached?  %>
-            <div class="card-body">
-              <h5 class="card-title"><%= result.title %></h5>
-              <p class="card-text"><%= result.info.truncate(30) %></p>
+        <div class="card-group col-md-6 col-lg-3 effect-fade" style="width: 20rem;" >
+          <%= link_to event_path(result.id), class: "event-link" do%>
+            <div class="card new-event">
+              <span class="event-info"><i class="fas fa-clock"></i> <%= result.created_at.strftime("%m月%d日%H時") %></span>
+              <% if result.image.present? %>
+                <%= image_tag result.image, class: 'card-img-top' %>
+              <% else %>
+                <%= image_tag "/assets/default-image.jpg", class: 'card-img-top' %>
+              <% end %>
+                <div class="card-body">
+                  <h5 class="card-title"><%= result.title %></h5>
+                </div>
+                <ul class="list-group">
+                  <li class="list-group-item">ジャンル　<%= result.genre.name %></li>
+                  <li class="list-group-item">会場　　　<%= result.area.name %></li>
+                  <li class="list-group-item">開催日　　<%= result.event_date.strftime("%Y年%-m月%-d日") %></li>
+                  <li class=" list-group-item like-button"><i class="fas fa-heart fa-2x" style="color: #e82a2a;"></i><span style="color: #e82a2a"><%= result.likes.count %></span></li>
+                </ul>
             </div>
-          </div>
           <% end %>
         </div>
       <% end %>
@@ -21,9 +30,10 @@
     <% end %>
   </div>
 </div>
+
 <div class="container text-center">
   <p class="paginate">
-    <%# <%= paginate @results %> %>
+    <%= paginate @results %>
     <%= link_to 'トップページへ戻る', root_path %>
   </p>
 </div>
