@@ -4,6 +4,8 @@
       <h5 class='form-header-text text-center'><i class="fas fa-user-plus fa-2x"></i>　新規登録</h5>
 
       <%= form_with model: @user, url: user_registration_path, local: true do |f| %>
+
+        <%= render 'layouts/error_messages', model: f.object %>
         <div class="form-group">
           <div class='form-text-wrap'>
             <label class="form-text" for="name">お名前</label>

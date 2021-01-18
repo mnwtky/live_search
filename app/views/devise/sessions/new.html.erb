@@ -5,6 +5,7 @@
 
       <%= form_with model: @user, url: user_session_path, local: true do |f| %>
 
+        <%= render 'layouts/error_messages', model: f.object %>
         <div class="form-group">
           <div class='form-text-wrap'>
             <label class="form-text" for="email">メールアドレス</label>
@@ -22,6 +23,7 @@
         <div class='register-btn text-center'>
           <%= f.submit "会員登録" ,class:"btn search-btn" %>
         </div>
+
       <% end %>
     </div>
   </div>
