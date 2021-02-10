@@ -1,6 +1,6 @@
 class CreateGenres < ActiveRecord::Migration[6.0]
   def change
-    create_table :genres do |t|
+    create_table :genles do |t|
 
       t.timestamps
     end
