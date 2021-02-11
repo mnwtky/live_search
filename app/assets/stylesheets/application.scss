@@ -11,8 +11,7 @@
 
 // トップページ
 .title-contents {
-  background: linear-gradient(to top, rgba(142, 176, 180, 0.541) 0%, rgba(127, 167, 177, 0.7) 100%);
-  background-image: image-url("top_image.jpg");
+  background: linear-gradient(to top, rgba(142, 176, 180, 0.541) 0%, rgba(127, 167, 177, 0.7) 100%, image-url("top_image.jpg"));
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
