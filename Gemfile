@@ -78,3 +78,4 @@ gem 'active_hash'
 gem 'kaminari'
 gem 'font-awesome-sass', '~> 5.4.1'
 gem 'rails-i18n'
+gem "aws-sdk-s3", require: false
