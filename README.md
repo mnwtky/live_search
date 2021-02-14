@@ -1,5 +1,4 @@
 # LIVE SEARCH
-![livesearch](https://user-images.githubusercontent.com/69100365/107870021-26549200-6ed8-11eb-86a6-6d5766069ac0.gif)
 
 
 # URL
