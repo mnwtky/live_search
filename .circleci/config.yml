@@ -1,15 +1,83 @@
 version: 2.1
-orbs:
-  ruby: circleci/ruby@0.1.2 
 
+orbs:
+  ruby: circleci/ruby@1.0
+  node: circleci/node@2
+  
 jobs:
   build:
     docker:
-      - image: circleci/ruby:2.6.3-stretch-node
-    executor: ruby/default
+      - image: circleci/ruby:2.6.5-node-browsers
+        environment:
+          - BUNDLER_VERSION: 2.2.2
     steps:
       - checkout
+      - ruby/install-deps
+
+  test:
+    parallelism: 3
+    docker:
+      - image: circleci/ruby:2.6.5-node-browsers
+        environment:
+          - BUNDLER_VERSION: 2.2.2
+          - RAILS_ENV: 'test'
+          - MYSQL_HOST: 127.0.0.1
+          - MYSQL_USERNAME: 'root'
+          - MYSQL_PASSWORD: ''
+          - MYSQL_PORT: 3306
+      - image: circleci/mysql:5.6.47-ram
+        environment:
+          - MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
+          - MYSQL_ROOT_HOST: '%'
+    working_directory: ~/assist
+    steps:
+      - checkout
+      - ruby/install-deps
+      - run: mv config/database.yml.ci config/database.yml
+      - run: bundle exec rake db:create
+      - run: bundle exec rake db:schema:load
       - run:
-          name: Which bundler?
-          command: bundle -v
-      - ruby/bundle-install
+         name: yarn Install
+         command: yarn install
+      - run: bundle exec bin/webpack
+      - run:
+         name: Rspec
+         command: bundle exec rspec
+      - run:
+         name: Rubocop
+         command: bundle exec rubocop
+      - store_test_results:
+          path: /tmp/test-results
+      - store_artifacts:
+          path: /tmp/test-results
+          destination: test-results
+        
+  deploy:
+    docker:
+      - image: circleci/ruby:2.6.5-node-browsers
+        environment:
+          - BUNDLER_VERSION: 2.2.2
+    steps:
+       - checkout
+       - ruby/install-deps
+       - add_ssh_keys:
+          fingerprints:
+            - "1b:2d:30:eb:51:2f:49:5a:ac:cc:e3:66:50:08:65:e5"
+       - deploy:
+          name: Capistrano deploy
+          command: bundle exec cap production deploy
+
+workflows:
+  version: 2
+  build_accept_deploy:
+    jobs:
+      - build
+      - test:
+          requires:
+            - build
+      - deploy:
+          requires:
+            - test
+          filters:
+            branches:
+              only: master
